@@ -1,26 +1,55 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="name">{{ greeting(name) }}</div>
+  <button class="btn btn-primary"
+     v-on:click="updateName"
+          >
+    click
+  </button>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue';
+import { reactive } from 'vue'; //Object or Array를 사용하려면
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  setup(){
+    let name = ref('OkkyDokky');
+    const namesref = ref({
+      id : 2
+    })
+    const names = reactive({
+      id : 1
+    })
+
+    const updateName = () => {
+      names.id = 2;
+      name.value = 'zzzzzz'
+
+      namesref.value.id = 3 ;
+      console.log("namesref.value.id : " + namesref.value.id);
+
+      greeting(name.value);
+      console.log(name);
+    }
+    const greeting = (name) => {
+      return 'Hello, ' + name;
+    }
+
+    return{
+      name,
+      greeting,
+      updateName,
+    }
   }
+
 }
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+.name{
+  color: darkorange;
 }
+
 </style>
