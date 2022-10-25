@@ -5,6 +5,10 @@
           >
     click
   </button>
+  <div>
+    <twitter-outlined />
+  </div>
+  
 </template>
 
 <script>
@@ -13,6 +17,7 @@ import { reactive } from 'vue'; //Object or Array를 사용하려면
 
 export default {
   setup(){
+
     let name = ref('OkkyDokky');
     const namesref = ref({
       id : 2
